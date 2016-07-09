@@ -1,5 +1,5 @@
+/* eslint-env mocha */
 /* global assert, module, self */
-/* jshint mocha: true */
 
 (function ()
 {
@@ -235,12 +235,12 @@
                         String(arg),
                         function ()
                         {
-                            assert.strictEqual(numberName(arg), undefined);
+                            assert.strictEqual(numberName(arg), void 0);
                         }
                     );
                 }
                 
-                test(undefined);
+                test(void 0);
                 test(Infinity);
                 test(-Infinity);
                 test(NaN);
@@ -307,10 +307,10 @@
                 ];
                 
                 var magnitude = -323;
-                for (var precisionm1 = 0;; ++precisionm1)
+                for (var precisionm1 = 0; ; ++precisionm1)
                 {
                     var precisionLimit = numberName.debug.PRECISION_LIMITS[precisionm1];
-                    if (precisionLimit === undefined)
+                    if (precisionLimit === void 0)
                         break;
                     if (!isFinite(precisionLimit))
                         precisionLimit = magnitude;
