@@ -1,6 +1,6 @@
 {
   "name": "number-name",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Converts a number to its English name",
   "keywords": [
     "convert",

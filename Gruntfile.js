@@ -9,7 +9,7 @@ module.exports =
         grunt.initConfig(
             {
                 clean: { default: ['coverage', 'lib/**/*.min.js'] },
-                fasttime_lint: { default: ['*.js', 'lib/**/*.js', 'test/**/*.js'] },
+                fasttime_lint: { default: ['*.js', 'lib/**/*.js', 'test/**/*.js', '!**/*.min.js'] },
                 mocha_istanbul: { default: 'test/**/*.spec.js' },
                 uglify:
                 {
