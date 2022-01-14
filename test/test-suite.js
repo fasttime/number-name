@@ -1,17 +1,19 @@
 /* eslint-env mocha */
 /* global assert, module, self */
 
+'use strict';
+
 (function ()
 {
-    'use strict';
-    
     function init()
     {
-        describe(
+        describe
+        (
             'numberName',
             function ()
             {
-                it(
+                it
+                (
                     'is set up correctly',
                     function ()
                     {
@@ -20,21 +22,24 @@
                         assert.strictEqual(self.numberName, numberName);
                     }
                 );
-                it(
+                it
+                (
                     'has no enumerable properties',
                     function ()
                     {
-                        assert.deepEqual(numberName, { });
+                        assert.deepEqual(Object.keys(numberName), []);
                     }
                 );
-                it(
+                it
+                (
                     'has no enumerable debug properties',
                     function ()
                     {
                         assert.deepEqual(numberName.debug, { });
                     }
                 );
-                it(
+                it
+                (
                     'has string representation "numberName"',
                     function ()
                     {
@@ -43,15 +48,17 @@
                 );
             }
         );
-        
-        describe(
+
+        describe
+        (
             'numberName names correctly',
             function ()
             {
                 function test(number, expectedName, description)
                 {
-                    it(
-                        description || number,
+                    it
+                    (
+                        description || String(number),
                         function ()
                         {
                             var actualName = numberName(number);
@@ -59,7 +66,7 @@
                         }
                     );
                 }
-                
+
                 test(-42, 'minus forty-two');
                 test(-0.1, 'minus zero point one');
                 test(-Number.MIN_VALUE, 'zero', '-Number.MIN_VALUE');
@@ -69,14 +76,16 @@
                 test(1, 'one');
                 test(1.5, 'one point five');
                 test(2, 'two');
-                test(
+                test
+                (
                     Math.E,
                     'two point seven one eight two eight one eight two eight four five nine zero ' +
                     'five',
                     'Math.E'
                 );
                 test(3, 'three');
-                test(
+                test
+                (
                     Math.PI,
                     'three point one four one five nine two six five three five eight nine seven ' +
                     'nine',
@@ -116,7 +125,8 @@
                 test(1000000.0000001, 'one million point zero zero zero zero zero zero one');
                 test(1e9, 'one billion');
                 test(1e12, 'one trillion');
-                test(
+                test
+                (
                     1e15 - 1,
                     'nine hundred ninety-nine trillion ' +
                     'nine hundred ninety-nine billion ' +
@@ -224,14 +234,15 @@
                 test(1e306, 'one uncentillion');
             }
         );
-        
+
         describe(
             'numberName does not name',
             function ()
             {
                 function test(arg)
                 {
-                    it(
+                    it
+                    (
                         String(arg),
                         function ()
                         {
@@ -239,15 +250,16 @@
                         }
                     );
                 }
-                
+
                 test(void 0);
                 test(Infinity);
                 test(-Infinity);
                 test(NaN);
             }
         );
-        
-        describe(
+
+        describe
+        (
             'numberName handles expected precision in',
             function ()
             {
@@ -256,17 +268,18 @@
                     var abs = eval(significand + 'e' + exp);
                     return abs;
                 }
-                
+
                 function mapDigit(digit)
                 {
                     return UNIT_NAMES[digit];
                 }
-                
+
                 function test(magnitude, precision)
                 {
                     var start = precision === 1 ? 1 : Math.pow(10, precision - 1) + 1;
                     var exp = magnitude - (precision - 1);
-                    it(
+                    it
+                    (
                         makeAbs(start, exp) + ' to ' + makeAbs(Math.pow(10, precision) - 1, exp),
                         function ()
                         {
@@ -279,9 +292,10 @@
                                     var number = makeAbs(intDigits, exp);
                                     var intDigitStr = String(intDigits);
                                     var expected =
-                                        'zero point ' + 'zero '.repeat(-magnitude - 1) +
-                                        Array.prototype.map.call(intDigitStr, mapDigit).join(' ');
-                                    assert.equal(
+                                    'zero point ' + 'zero '.repeat(-magnitude - 1) +
+                                    Array.prototype.map.call(intDigitStr, mapDigit).join(' ');
+                                    assert.equal
+                                    (
                                         numberName(number),
                                         expected,
                                         'Unexpected output for ' + number
@@ -291,7 +305,7 @@
                         }
                     );
                 }
-                
+
                 var UNIT_NAMES =
                 [
                     'zero',
@@ -305,7 +319,7 @@
                     'eight',
                     'nine',
                 ];
-                
+
                 var magnitude = -323;
                 for (var precisionm1 = 0; ; ++precisionm1)
                 {
@@ -320,10 +334,10 @@
             }
         );
     }
-    
+
     var numberName;
     var TestSuite = { init: init };
-    
+
     if (typeof self !== 'undefined')
     {
         numberName = self.numberName;

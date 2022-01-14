@@ -10,7 +10,7 @@
     "transform",
     "word"
   ],
-  "homepage": "https://github.com/fasttime/Number-Name",
+  "homepage": "https://github.com/fasttime/Number-Name#readme",
   "bugs": {
     "url": "https://github.com/fasttime/Number-Name/issues"
   },
@@ -19,24 +19,30 @@
   "files": [
     "lib"
   ],
+  "directories": {
+		"test": "test"
+	},
   "main": "lib/number-name.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/fasttime/Number-Name.git"
   },
   "scripts": {
-    "build": "npm install && grunt"
+    "build": "npm install && npm run build-no-install",
+    "build-no-install": "npm run clean && npm run lint && npm run coverage && npm run minify",
+    "clean": "node ./dev/clean.mjs",
+    "coverage": "c8 --reporter=html --reporter=text-summary npm test",
+    "lint": "node ./dev/lint.mjs",
+    "minify": "node ./dev/minify.mjs",
+    "test": "mocha --check-leaks test/**/*.spec.js"
   },
   "devDependencies": {
-    "assert": "https://github.com/fasttime/assert/tarball/master",
-    "grunt": "~1.0.1",
-    "grunt-cli": "~1.2.0",
-    "grunt-contrib-clean": "~1.0.0",
-    "grunt-contrib-uglify": "~2.0.0",
-    "grunt-fasttime-lint": "0.0.2",
-    "grunt-mocha-istanbul": "~5.0.1",
-    "istanbul": "~0.4.4",
-    "mocha": "~2.5.3",
-    "mocha-matrix": "~0.1.1"
+    "@fasttime/lint": "latest",
+    "c8": "latest",
+    "eslint": "latest",
+    "mocha": "latest",
+    "mocha-bar": "latest",
+    "mocha_3": "npm:mocha@3",
+    "uglify-js": "latest"
   }
 }

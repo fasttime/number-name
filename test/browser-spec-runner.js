@@ -1,18 +1,18 @@
 /* eslint-env browser */
-/* global Matrix, TestSuite, mocha */
+/* global MochaBar, TestSuite, mocha */
+
+'use strict';
 
 (function ()
 {
-    'use strict';
-    
     function handleLoad()
     {
         mocha.run();
     }
-    
-    mocha.setup({ ui: 'bdd', reporter: Matrix });
+
+    mocha.setup({ checkLeaks: true, reporter: MochaBar, ui: 'bdd' });
     mocha.checkLeaks();
     TestSuite.init();
-    addEventListener('load', handleLoad);
+    addEventListener('DOMContentLoaded', handleLoad);
 }
 )();

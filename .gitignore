@@ -1,3 +1,7 @@
+.*
+!.git*
+!.npmrc
+*.cpuprofile
 coverage/
 node_modules/
 npm-debug.log
